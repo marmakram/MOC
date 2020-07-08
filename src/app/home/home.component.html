@@ -1,0 +1,64 @@
+<div style="direction: rtl; ">
+  <div class="vertical-center text-center home-client" *ngIf="!displayChurches">
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="pt-5 card2">
+          <div class="d-flex flex-column">
+            <h3>برجاء ادخال الرقم القومي</h3>
+            <mat-form-field class="p-3" style="width: auto; min-width: 250px; ">
+              <input matInput class="text-center " style="font-size: 22px;" [(ngModel)]="nationalId" autocomplete="off">
+            </mat-form-field>
+          </div>
+          <button class="btn btn-primary btn-lg" style="width: 150px;" type="submit" (click)="getChurches()">
+            ادخال
+          </button>
+
+          <!-- <div class="go-corner" href="#">
+      <div class="go-arrow">
+        →
+      </div>
+    </div> -->
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <img src="../../assets/img/angular-logo.jpg">
+      </div>
+      <!-- <botdetect-captcha captchaStyleName="yourFirstCaptchaStyle"></botdetect-captcha>
+    <input id="yourFirstCaptchaUserInput" name="yourFirstCaptchaUserInput" ngModel #yourFirstCaptchaUserInput="ngModel"
+      type="text"> -->
+    </div>
+  </div>
+
+  <div *ngIf="displayChurches" class="container">
+    <div class="row">
+
+      <div *ngFor="let ch of churchList" class="col-md-4">
+        <div class="card2" href="javascript:void(0)" (click)="selectChurch(ch.id)">
+          <div class="text-center">
+            <p class="">{{ch.name}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="shadow-lg card bg-white">
+            <div class="card-body text-center">
+              <p class="card-text">Some text</p>
+            </div>
+          </div>
+          <div class="shadow-lg card bg-white">
+            <div class="card-body text-center">
+              <p class="card-text">Some text ange of responsive margin and padding utility classes ange of responsive margin and padding utility classes ange of responsive margin and padding utility classes</p>
+            </div>
+          </div>
+          <div class="shadow-lg card bg-white">
+            <div class="card-body text-center">
+              <p class="card-text">Some text ange of responsive margin and padding utility classes ange of responsive margin and padding utility classes ange of responsive margin and padding utility classes</p>
+            </div>
+          </div> -->
+
+    </div>
+  </div>
+
+</div>

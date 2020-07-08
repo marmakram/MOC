@@ -1,0 +1,64 @@
+<!---------------Table---------------->
+<div class="row" style="padding-top: 10px;">
+  <div class="addButton p-2">
+    <a [routerLink]="['/users/add-user']">
+      <button class="btn btn-primary btn-icon">
+        <i class="m-0 fa fa-plus"></i>
+      </button>
+    </a>
+  </div>
+  <div class="col-sm-12">
+    <table class="table table-striped" *ngIf='userList && userList.length'>
+
+      <thead>
+        <tr>
+          <th> Servant Name </th>
+          <!-- <th>Church Name </th> -->
+          <th> Email </th>
+          <th> Mobile </th>
+          <th style="text-align:center;"> </th>
+          <th style="text-align:center;"> </th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+        <tr *ngFor='let user of userList'>
+          <td>
+            {{user.arabicName}}
+          </td>
+          <!-- <td>
+            {{user.churches && user.churches.length > 0 ? user.churches[0].name : ''}}
+          </td> -->
+          <td>
+            {{user.email}}
+          </td>
+          <td>
+            {{user.primePhone }}
+          </td>
+
+          <td>
+            <a *ngIf="user && user.id" [routerLink]="['/users/add-user', user.id]">
+              <i class="large material-icons">edit</i>
+            </a>
+          </td>
+          <td>
+            <!-- <a *ngIf="user && user.id" [routerLink]="['/add-user', user.id, 'view']" >
+                View
+              </a> -->
+            <a *ngIf="user && user.id" href="javascript:void(0)" (click)="deleteUser(user.id)">
+              <i class="large material-icons">delete</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--End Div Col-->
+</div>
+<!--End Div Row-->
+<!------------------------------------------------------->
+
+<div class="row" *ngIf='!userList || userList.length==0'>
+  <h4>No items found</h4>
+</div>

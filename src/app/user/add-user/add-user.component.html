@@ -1,0 +1,136 @@
+<form style="direction: ltr;" autocomplete="off" [formGroup]="RequestForm" (ngSubmit)="saveUser()">
+  <h3>Add User</h3>
+  <div class="row">
+
+    <div class="alert alert-danger col-md-12 pr-md-1" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+
+    <mat-form-field class="col-md-6">
+      <input type="text" matInput placeholder="Select User" formControlName="arabicName" [matAutocomplete]="auto"
+      [ngClass]="{'is-invalid': (RequestForm.controls.arabicName.touched || RequestForm.controls.arabicName.dirty) && 
+        RequestForm.controls.arabicName.errors?.required}" />
+      <mat-error *ngIf="RequestForm.controls.arabicName.errors?.required">This field is Required</mat-error>
+    </mat-form-field>
+    
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectedUser($event)">
+      <mat-option *ngFor="let option of people" [value]="option">{{option.arabicName}}</mat-option>
+    </mat-autocomplete>
+
+    <!-- <mat-form-field class="col-md-6">
+      <mat-label>Arabic Name</mat-label>
+      <input matInput placeholder="E.g.: John" formControlName="arabicName"
+        [ngClass]="{'is-invalid': (RequestForm.controls.arabicName.touched || RequestForm.controls.arabicName.dirty) && RequestForm.controls.arabicName.errors?.required}" />
+      <mat-error *ngIf="RequestForm.controls.arabicName.errors?.required">This field is Required</mat-error>
+    </mat-form-field> -->
+
+    
+    <mat-form-field class="col-md-6">
+      <mat-label>English Name</mat-label>
+      <input matInput placeholder="E.g.: John" formControlName="englishName"
+        [ngClass]="{'is-invalid': (RequestForm.controls.englishName.touched || RequestForm.controls.englishName.dirty) && RequestForm.controls.englishName.errors?.required}" />
+      <mat-error *ngIf="RequestForm.controls.englishName.errors?.required">This field is Required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+      <mat-label>User Number</mat-label>
+      <input matInput placeholder="E.g.: 001" formControlName="userNumber"
+        [ngClass]="{'is-invalid': (RequestForm.controls.userNumber.touched || RequestForm.controls.userNumber.dirty) && RequestForm.controls.userNumber.errors?.required}" />
+      <mat-error *ngIf="RequestForm.controls.userNumber.errors?.required">This field is Required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="primePhone" pattern="[0-9]*" [ngClass]="{'is-invalid': (RequestForm.controls.primePhone.touched || RequestForm.controls.primePhone.dirty) 
+                              && RequestForm.controls.primePhone.errors?.workprimePhoneIsInvalid }" autocomplete="off" />
+      <mat-error *ngIf="RequestForm.controls.primePhone.errors?.workprimePhoneIsInvalid">Phone Number is invalid </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="col-md-6">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password"
+        [ngClass]="{'is-invalid': (RequestForm.controls.password.touched || RequestForm.controls.password.dirty) && RequestForm.controls.password.errors?.required }"
+        autocomplete="off" />
+      <mat-error *ngIf="RequestForm.controls.password.errors?.required">This field is Required </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput formControlName="confirmPassword" type="password"
+        [ngClass]="{'is-invalid': (RequestForm.controls.confirmPassword.touched || RequestForm.controls.confirmPassword.dirty) && RequestForm.controls.confirmPassword.errors?.length > 0 }"
+        autocomplete="off" />
+      <mat-error *ngIf="RequestForm.controls.confirmPassword.errors?.requiredPassword">This field is Required
+      </mat-error>
+      <mat-error *ngIf="RequestForm.controls.confirmPassword.errors?.matchPassword">This password does not match
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+      <mat-label>Identifier</mat-label>
+      <input matInput class="img-msg" type="email" placeholder=" example@domain.com or NationalId"
+        formControlName="email" [ngClass]="{'is-invalid': (RequestForm.controls.email.touched || RequestForm.controls.email.dirty) &&
+                           !RequestForm.controls.email.valid }" autocomplete="off" />
+
+      <mat-error *ngIf="RequestForm.controls.email.errors?.required">This field is Required</mat-error>
+      <mat-error *ngIf="RequestForm.controls.email.errors?.pattern">The email is invalid</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+      <mat-label>Church</mat-label>
+      <mat-select formControlName="churchId"
+          [ngClass]="{'is-invalid': (RequestForm.controls.churchId.touched || RequestForm.controls.churchId.dirty) 
+          && RequestForm.controls.churchId.errors?.required }">
+        <mat-option *ngFor="let ch of allChurches" [value]="ch.id">
+          {{ch.name}}
+        </mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="RequestForm.controls.churchId.errors?.required">This field is Required </mat-error>
+    </mat-form-field>
+
+
+    <!-- <div class="row">
+                    <div class="col-md-6 ">
+                      
+                      <div class="row">
+                        
+                        
+                        <div class="form-group  col-md-9  col-md-8" >
+                          <div class="row">
+                              <input type="checkbox" formControlName="status" name="status" disabled *ngIf="currId && currId.length > 0" />Is mail confirmed
+                              
+                          </div>
+                          <button type="button" class="btn" (click)="resendEmail()" *ngIf="currId && !isMailConfirmed" >Resend Email</button> 
+                          
+                        </div>
+                      </div>
+                    </div>
+                    
+              </div> -->
+
+  </div>
+  <div class="row">
+    <span class="col-sm-6 text-right">
+
+      <button type="submit" class="btn btn-primary" style="text-align: center;" [disabled]="RequestForm.invalid"
+        [class.disabled]="RequestForm.invalid">Save</button>
+    </span>
+
+    <span class="col-sm-6">
+      <button class="btn" style="text-align: center;" (click)="cancel()">Cancel</button>
+    </span>
+  </div>
+
+  <!-- <div class="col">
+    <div class="text-center">
+      <button class="btn btn-primary" type="submit"
+        [title]="RequestForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+        [disabled]="isView || !RequestForm.valid"> Save
+      </button>
+    </div>
+  </div> -->
+
+  <!-- <app-users-list ></app-users-list> -->
+
+</form>

@@ -1,0 +1,30 @@
+<form autocomplete="off" [formGroup]="currForm" (ngSubmit)="save()">
+    <h2>{{currChurch?.name}}</h2>
+    <h5 class="pt-3">Choose the number of reserved seats : </h5>
+    
+    <div class="row">
+
+        <mat-form-field class="col-md-6">
+            <mat-label>Liturgy</mat-label>
+            <mat-select formControlName="Liturgy" required>
+              <mat-option *ngFor="let ch of odasat" [value]="ch.id">
+                {{ch.name}}
+                <!--{{ch.date | date: 'dd/MM/yyyy hh:MM tt'}}  - From: {{ch.startTime}}   To : {{ch.endTime}} -->
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6">
+            <mat-label> reserved seats</mat-label>
+            <input matInput type="number" required formControlName="selectedSeats" />
+        </mat-form-field>
+    </div>
+
+    <div class="row" style="padding-top: 10px;">
+        <div class="p-2">
+            <button class="btn btn-primary" type="submit" >
+                Save
+            </button>
+        </div>
+    </div>
+</form>

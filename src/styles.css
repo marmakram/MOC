@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html {
+    font-size: 18px;
+  }
+
+  
+.card2 {
+  display: block;
+  top: 0px;
+  position: relative;
+  max-width: 500px;
+  min-width: 300px;
+  /* background-color: #f9f6f2f6; */
+  border-radius: 4px;
+  padding: 32px 24px;
+  margin: 12px;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid #f2f8f9;
+  box-shadow: 0px 4px 8px gray;
+}
+.card2:hover {
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  box-shadow: 0px 4px 8px rgba(36, 37, 42, 1); /* rgba(38, 38, 38, 0.2); */
+  top: -4px;
+  border: 1px solid #cccccc;
+  background-color: white;
+}
+.card2:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -16px;
+  right: -16px;
+  background:  rgba(83, 51, 237, 1);
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transition: -webkit-transform 0.15s ease-out;
+  transition: -webkit-transform 0.15s ease-out;
+  transition: transform 0.15s ease-out;
+  transition: transform 0.15s ease-out, -webkit-transform 0.15s ease-out;
+}
+.card2:hover:before {
+  -webkit-transform: scale(2.15);
+          transform: scale(2.15);
+}

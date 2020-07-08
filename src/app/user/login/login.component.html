@@ -1,0 +1,18 @@
+<div class="login-wrapper">
+  <div class="">
+    <div class="d-flex justify-content-center">
+      <div class="card2">
+        <form class="d-flex flex-column" (ngSubmit)="submit()" [formGroup]="currForm">
+          <mat-form-field class="">
+            <input matInput placeholder="Username" formControlName="username">
+          </mat-form-field>
+
+          <mat-form-field class="">
+            <input type="password" matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+          <button mat-stroked-button color="accent" [disabled]="currForm.invalid" type="submit">Log in</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

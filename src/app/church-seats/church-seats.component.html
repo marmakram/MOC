@@ -1,0 +1,77 @@
+<form style="direction: ltr;" autocomplete="off" [formGroup]="currForm" (ngSubmit)="save()">
+    <h3>{{churchName}}</h3>
+
+    <div class="row" style="padding-top: 10px;">
+        <div class="p-2">
+            <button class="btn btn-primary btn-icon" type="button" (click)="addDetail()">
+                <i class="m-0 fa fa-plus"></i>
+            </button>
+        </div>
+
+        <div class="p-2 col-sm-8 text-right">
+            <button class="btn btn-primary" type="submit">
+                Save
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <table formArrayName="Details"  class="col-sm-12">
+            <thead>
+                <tr>
+                    <!-- <th> Id </th> -->
+                    <th> Liturgy Date </th>
+                    <th> Starting Time </th>
+                    <!-- <th> End Time </th> -->
+                    <th> Max Seats</th>
+                    <th style="text-align:center;"> </th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <tr *ngFor="let detail of Details.controls;let i = index" [formGroupName]="i">
+                    <!-- <td>
+                    {{user.id}}
+                  </td> -->
+                    <td>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <input matInput [ngxTimepicker]="pickerst" formControlName="StartTime">
+                            <ngx-material-timepicker #pickerst></ngx-material-timepicker>
+                        </mat-form-field>                 
+                    </td>
+                    <!-- <td>
+                        <mat-form-field>
+                            <input matInput [ngxTimepicker]="pickeret" formControlName="EndTime">
+                            <ngx-material-timepicker #pickeret></ngx-material-timepicker>
+                        </mat-form-field>
+                    </td> -->
+
+                    <td>
+                        <mat-form-field>
+                            <input matInput type="number" formControlName="availableSeats" />
+                        </mat-form-field>
+
+                    </td>
+                    <!-- <td>
+                        <a *ngIf="user && user.id" [routerLink]="['/users/add-user', user.id]">
+                            Edit
+                        </a>
+                    </td> -->
+                    <td>
+                        <a href="javascript:void(0)" (click)="deleteDetail($event, i)">
+                            <i style="font-size: 35px" class="large material-icons">delete_forever</i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</form>
